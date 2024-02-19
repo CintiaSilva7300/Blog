@@ -4,6 +4,7 @@ import { Home } from "./paginas/home/Home";
 import { Login } from "./paginas/login/Login";
 import { Navbar } from "./components/navBar/NavBar";
 import { Footer } from "./components/footer/Footer";
+import Cadastro from "./paginas/cadastro/Cadastro";
 
 function App() {
   return (
@@ -15,8 +16,10 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/cadastro" element={<Cadastro />} />
           </Routes>
         </div>
+
         <Footer />
       </BrowserRouter>
     </>
