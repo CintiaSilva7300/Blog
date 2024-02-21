@@ -1,6 +1,8 @@
-import { ReactNode, createContext, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
+
 import UsuarioLogin from "../models/UsuarioLogin";
 import { login } from "../Services/Service";
+// import { toastAlerta } from "../utils/toastAlerta"
 
 interface AuthContextProps {
   usuario: UsuarioLogin;
@@ -45,8 +47,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       id: 0,
       nome: "",
       usuario: "",
-      foto: "",
       senha: "",
+      foto: "",
       token: "",
     });
   }

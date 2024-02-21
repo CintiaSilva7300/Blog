@@ -7,5 +7,5 @@ export default interface Usuario {
   usuario: string;
   foto: string;
   senha: string;
-  postagems: Postagem | null;
+  postagem?: Postagem | null;
 }

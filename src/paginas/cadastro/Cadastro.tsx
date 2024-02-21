@@ -1,27 +1,27 @@
 import { ChangeEvent, useEffect, useState } from "react";
 import Usuario from "../../models/Usuario";
-import Postagem from "../../models/Postagem";
 import "./styles.css";
 import { useNavigate } from "react-router-dom";
+import { cadastrarUsuario } from "../../Services/Service";
 
 export default function Cadastro() {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [confirmaSenha, setConfirmaSenha] = useState<string>("");
 
   const [usuario, setUsuario] = useState<Usuario>({
     id: 0,
     nome: "",
-    senha: "",
     usuario: "",
+    senha: "",
     foto: "",
   });
 
   const [usuarioResposta, setUsuarioResposta] = useState<Usuario>({
     id: 0,
     nome: "",
-    senha: "",
     usuario: "",
+    senha: "",
     foto: "",
   });
 
@@ -58,6 +58,7 @@ export default function Cadastro() {
         );
         alert("Usuário cadastrado com sucesso");
       } catch (error) {
+        console.log("->>>", error);
         alert("Erro ao cadastrar o Usuário");
       }
     } else {

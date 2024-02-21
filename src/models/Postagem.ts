@@ -6,6 +6,6 @@ export default interface IPostagem {
   titulo: string;
   texto: string;
   data: string;
-  tema?: Tema | null;
-  usuario?: Usuario | null;
+  tema: Tema | null;
+  usuario: Usuario | null;
 }
