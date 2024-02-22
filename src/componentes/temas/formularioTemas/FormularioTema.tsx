@@ -1,10 +1,10 @@
-import { ChangeEvent, useContext, useEffect, useState } from "react";
-import Tema from "../../../models/Tema";
-import { useNavigate, useParams } from "react-router-dom";
-import { AuthContext } from "../../../context/AuthContext";
-import { atualizar, buscar, cadastrar } from "../../../Services/Service";
+import React, { ChangeEvent, useContext, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthContext';
+import Tema from '../../../models/Tema';
+import { atualizar, buscar, cadastrar } from '../../../services/Service';
 
-export default function FormularioTema() {
+function FormularioTema() {
   const [tema, setTema] = useState<Tema>({} as Tema);
 
   const navigate = useNavigate();
@@ -12,8 +12,7 @@ export default function FormularioTema() {
   const { id } = useParams<{ id: string }>();
 
   const { usuario, handleLogout } = useContext(AuthContext);
-  // const token = usuario.token;
-  const token = usuario?.token || "";
+  const token = usuario.token;
 
   async function buscarPorId(id: string) {
     await buscar(`/temas/${id}`, setTema, {
@@ -25,72 +24,81 @@ export default function FormularioTema() {
 
   useEffect(() => {
     if (id !== undefined) {
-      buscarPorId(id);
+      buscarPorId(id)
     }
-  }, [id]);
+  }, [id])
 
   function atualizarEstado(e: ChangeEvent<HTMLInputElement>) {
     setTema({
       ...tema,
-      [e.target.name]: e.target.value,
-    });
-    console.log(JSON.stringify(tema));
+      [e.target.name]: e.target.value
+    })
+
+    console.log(JSON.stringify(tema))
   }
 
   async function gerarNovoTema(e: ChangeEvent<HTMLFormElement>) {
-    e.preventDefault();
+    e.preventDefault()
 
     if (id !== undefined) {
       try {
         await atualizar(`/temas`, tema, setTema, {
           headers: {
-            Authorization: token,
-          },
-        });
-        alert("Tema atualizado com sucesso!");
-        retornar();
+            'Authorization': token
+          }
+        })
+
+        alert('Tema atualizado com sucesso')
+        retornar()
+
       } catch (error: any) {
-        if (error.toString().includes("403")) {
-          alert("Sua sessão expirou, faça login novamente!");
-          handleLogout();
+        if (error.toString().includes('403')) {
+          alert('O token expirou, favor logar novamente')
+          handleLogout()
         } else {
-          alert("Erro ao atualizar o tema!");
+          alert('Erro ao atualizar o Tema')
         }
+
       }
+
     } else {
       try {
         await cadastrar(`/temas`, tema, setTema, {
           headers: {
-            Authorization: token,
-          },
-        });
-        alert("Tema cadastrado com sucesso!");
+            'Authorization': token
+          }
+        })
+
+        alert('Tema cadastrado com sucesso')
+
       } catch (error: any) {
-        if (error.toString().includes("403")) {
-          alert("Sua sessão expirou, faça login novamente!");
+        if (error.toString().includes('403')) {
+          alert('O token expirou, favor logar novamente')
+          handleLogout()
         } else {
-          alert("Erro ao cadastrar o tema!");
+          alert('Erro ao cadastrado o Tema')
         }
       }
     }
-    retornar();
+
+    retornar()
   }
 
   function retornar() {
-    navigate("/temas");
+    navigate("/temas")
   }
 
   useEffect(() => {
-    if (token === " ") {
-      alert("Sua sessão expirou, faça login novamente!");
-      navigate("/login");
+    if (token === '') {
+      alert('Você precisa estar logado');
+      navigate('/login');
     }
   }, [token]);
 
   return (
     <div className="container flex flex-col items-center justify-center mx-auto">
       <h1 className="text-4xl text-center my-8">
-        {id ? "Editar tema" : "Cadastrar tema"}
+        {id === undefined ? 'Cadastre um novo tema' : 'Editar tema'}
       </h1>
 
       <form className="w-1/2 flex flex-col gap-4" onSubmit={gerarNovoTema}>
@@ -99,21 +107,21 @@ export default function FormularioTema() {
           <input
             type="text"
             placeholder="Descrição"
-            name="descricao"
+            name='descricao'
             className="border-2 border-slate-700 rounded p-2"
             value={tema.descricao}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => {
-              atualizarEstado(e);
-            }}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => atualizarEstado(e)}
           />
         </div>
         <button
           className="rounded text-slate-100 bg-indigo-400 hover:bg-indigo-800 w-1/2 py-2 mx-auto block"
           type="submit"
         >
-          {id ? "Editar" : "Cadastrar"}
+          {id === undefined ? 'Cadastrar' : 'Editar'}
         </button>
       </form>
     </div>
   );
 }
+
+export default FormularioTema;

@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: `https://blogpessoal-pfgs.onrender.com`,
+  baseURL: "https://blogpessoal-pfgs.onrender.com",
 });
 
 export const cadastrarUsuario = async (
