@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useContext, useEffect, useState } from "react";
+import { ChangeEvent, useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import Tema from "../../models/Tema";
@@ -65,7 +65,7 @@ function FormularioPostagem() {
     buscarTemas();
     if (id !== undefined) {
       buscarPostagemPorId(id);
-      console.log(tema);
+      console.log("->>>", tema);
     }
   }, [id]);
 
@@ -92,7 +92,7 @@ function FormularioPostagem() {
   async function gerarNovaPostagem(e: ChangeEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    console.log({ postagem });
+    console.log("Postagem a ser enviada ->>> ", { postagem });
 
     if (id != undefined) {
       try {
@@ -183,13 +183,14 @@ function FormularioPostagem() {
             ))}
           </select>
         </div>
+
         <button
           disabled={carregandoTema}
           type="submit"
           className="rounded disabled:bg-slate-200 bg-indigo-400 hover:bg-indigo-800 text-white font-bold w-1/2 mx-auto block py-2"
         >
           {carregandoTema ? (
-            <span>Carregando</span>
+            <span>Carregando...</span>
           ) : id !== undefined ? (
             "Editar"
           ) : (
