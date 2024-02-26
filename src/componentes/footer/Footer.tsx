@@ -8,6 +8,7 @@ import { useContext } from "react";
 
 function Footer() {
   const { usuario, handleLogout } = useContext(AuthContext);
+  console.log(handleLogout);
 
   let footerComponent;
 

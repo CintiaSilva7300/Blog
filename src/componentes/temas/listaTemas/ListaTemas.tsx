@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Dna } from 'react-loader-spinner';
-import { useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../contexts/AuthContext';
-import Tema from '../../../models/Tema';
-import { buscar } from '../../../services/Service';
-import CardTemas from '../cardTemas/CardTemas';
+import { useContext, useEffect, useState } from "react";
+import { Dna } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../../../contexts/AuthContext";
+import Tema from "../../../models/Tema";
+import { buscar } from "../../../services/Service";
+import CardTemas from "../cardTemas/CardTemas";
 
 function ListaTemas() {
   const [temas, setTemas] = useState<Tema[]>([]);
@@ -16,21 +16,21 @@ function ListaTemas() {
 
   async function buscarTemas() {
     try {
-      await buscar('/temas', setTemas, {
+      await buscar("/temas", setTemas, {
         headers: { Authorization: token },
       });
     } catch (error: any) {
-      if (error.toString().includes('403')) {
-        alert('O token expirou, favor logar novamente')
-        handleLogout()
+      if (error.toString().includes("403")) {
+        alert("O token expirou, favor logar novamente");
+        handleLogout();
       }
     }
   }
 
   useEffect(() => {
-    if (token === '') {
-      alert('Você precisa estar logado');
-      navigate('/login');
+    if (token === "") {
+      alert("Você precisa estar logado");
+      navigate("/login");
     }
   }, [token]);
 
