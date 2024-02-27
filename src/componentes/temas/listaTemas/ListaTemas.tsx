@@ -20,7 +20,7 @@ function ListaTemas() {
       await buscar("/temas", setTemas, {
         headers: { Authorization: token },
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       if (error.toString().includes("403")) {
         toastAlerta("O token expirou, favor logar novamente", "erro");
         handleLogout();
