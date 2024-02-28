@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-import { buscar } from "../../services/Service";
-import { deletar } from "../../services/Service";
+import { buscar } from "../../services/Service.ts";
+import { deletar } from "../../services/Service.ts";
 import Postagem from "../../models/Postagem";
 import { toastAlerta } from "../../utils/toastAlerta";
 

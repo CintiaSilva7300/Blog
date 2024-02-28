@@ -3,7 +3,7 @@ import CardPostagem from "../cardPostagem/CardPostagem";
 import Postagem from "../../models/Postagem";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
-import { buscar } from "../../services/Service";
+import { buscar } from "../../services/Service.ts";
 import { Dna } from "react-loader-spinner";
 import { toastAlerta } from "../../utils/toastAlerta";
 

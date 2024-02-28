@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import { AuthContext } from "../../../contexts/AuthContext";
 import Tema from "../../../models/Tema";
-import { buscar, deletar } from "../../../services/Service";
+import { buscar, deletar } from "../../../services/Service.ts";
 import { toastAlerta } from "../../../utils/toastAlerta";
 
 function DeletarTema() {

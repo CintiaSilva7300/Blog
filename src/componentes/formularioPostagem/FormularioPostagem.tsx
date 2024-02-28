@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import Tema from "../../models/Tema";
 import Postagem from "../../models/Postagem";
-import { atualizar, buscar, cadastrar } from "../../services/Service";
+import { atualizar, buscar, cadastrar } from "../../services/Service.ts";
 import { toastAlerta } from "../../utils/toastAlerta";
 
 function FormularioPostagem() {

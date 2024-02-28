@@ -3,7 +3,7 @@ import { Dna } from "react-loader-spinner";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
 import Tema from "../../../models/Tema";
-import { buscar } from "../../../services/Service";
+import { buscar } from "../../../services/Service.ts";
 import CardTemas from "../cardTemas/CardTemas";
 import { toastAlerta } from "../../../utils/toastAlerta";
 

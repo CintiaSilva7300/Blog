@@ -2,7 +2,7 @@ import { ChangeEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Usuario from "../../models/Usuario";
 import "./Cadastro.css";
-import { cadastrarUsuario } from "../../services/Service";
+import { cadastrarUsuario } from "../../services/Service.ts";
 import { toastAlerta } from "../../utils/toastAlerta";
 
 function Cadastro() {
